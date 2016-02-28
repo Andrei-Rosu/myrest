@@ -52,9 +52,9 @@ $active_group = getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'default
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['username'] = 'myrest';
+$db['default']['password'] = '5b2z6tFt69ZAjef8';
+$db['default']['database'] = 'myrest';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
