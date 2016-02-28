@@ -1,0 +1,117 @@
+/*@import url("reset.css");*/
+
+@import url("fonts.css");
+
+body {
+	font-family: monospace;
+    font-size: 14px;
+	margin: 0;
+	padding: 0 15%;
+}
+
+header {
+	margin-bottom: 14px;
+}
+
+#main-menu {
+	list-style: none;
+	padding: 0;
+}
+
+#main-menu li {
+	display: inline-block;
+	margin: 20px;
+}
+
+#dash, #connection {
+	position: absolute;
+	right: 10px;
+	max-width: 20%;
+	font-size: 0.7em;
+	border: 1px solid lightgray;
+	padding: 10px;
+	background-color: white;
+}
+
+#wrap {
+	margin: 20px;
+}
+
+.wiki {
+	margin: auto;
+}
+
+.wiki-heading {
+	border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    margin: 20px 0 40px;
+}
+
+.wiki-img {
+	display: inline-block;
+	margin-left: 20px;
+	max-width: 25%;
+	vertical-align: middle;
+}
+
+.wiki-img img {
+	width: 100%;
+}
+
+.wiki h1 {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.wiki-content {
+	margin: 20px 0;
+}
+
+pre {
+	background: rgb(230, 230, 230) none repeat scroll 0 0;
+    padding: 10px;
+}
+
+#wiki-list {
+	margin: 20px 0;
+}
+
+.wiki-row {
+	background-color: rgb(240, 240, 240);
+    border-bottom: 3px solid rgb(100, 100, 150);
+    padding: 20px;
+}
+
+.wiki-row h2 {
+	margin-top: 0;
+}
+
+.wiki-row > .img {
+	display: inline-block;
+	vertical-align: top;
+	width: 23%;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+
+.wiki-row .infos {
+	display: inline-block;
+	max-width: 86%;
+	padding-left: 10px;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+.wiki-row > .img img {
+	width: 100%;
+}
+
+ul.pagination {
+	list-style: none;
+	padding: 0;
+}
+
+ul.pagination li {
+	display: inline;
+	margin: 4px;
+}
