@@ -5,9 +5,21 @@ if (!defined('BASEPATH'))
 
 class Tutorials extends MY_Controller {
 	
+	public function __construct($param = null) {
+		parent::__construct($param);
+		if(!is_connected()) {
+			add_error(translate('Vous ne pouvez pas accéder à vos wikis sans vous être authentifié'));
+		}
+		$this->load->helper('pagination');
+		$this->load->model('tutorial');
+		$this->load->library('mypagination');
+	}
+	
 	public function index() {
 		$this->session->unset_userdata('user_tuto_search');
-		$this->layout->view('tutorials/index');
+		$this->load->model('tutorial');
+		$tutorials = $this->tutorial->getOwn();
+		$this->layout->view('tutorials/index', array('tutorials'=>$tutorials));
 	}
 	
 	public function search($limit='start',$page=1) {
@@ -41,9 +53,7 @@ class Tutorials extends MY_Controller {
 			add_error(translate('La recherche est invalide'));
 			return $tutorials;
 		}
-		$this->load->helper('pagination');
-		$this->load->model('tutorial');
-		$this->load->library('mypagination');
+		
 		$this->tutorial->search = $search;
 		return $this->mypagination->paginate('searched-tutos', $this->tutorial, $limit, 10, $methodName = 'keySearch');
 	}

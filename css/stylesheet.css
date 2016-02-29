@@ -45,13 +45,15 @@ header {
 	border-bottom: 1px solid lightgray;
     border-top: 1px solid lightgray;
     margin: 20px 0 40px;
+	padding: 15px 0;
 }
 
 .wiki-img {
-	display: inline-block;
-	margin-left: 20px;
-	max-width: 25%;
-	vertical-align: middle;
+	box-sizing: border-box;
+    display: inline-block;
+    max-width: 25%;
+    padding-right: 20px;
+    vertical-align: middle;
 }
 
 .wiki-img img {
@@ -59,8 +61,10 @@ header {
 }
 
 .wiki h1 {
-	display: inline-block;
-	vertical-align: middle;
+	box-sizing: border-box;
+    display: inline-block;
+    max-width: 74%;
+    vertical-align: middle;
 }
 
 .wiki-content {
@@ -80,6 +84,7 @@ pre {
 	background-color: rgb(240, 240, 240);
     border-bottom: 3px solid rgb(100, 100, 150);
     padding: 20px;
+	margin: 20px 0;
 }
 
 .wiki-row h2 {
@@ -96,7 +101,7 @@ pre {
 
 .wiki-row .infos {
 	display: inline-block;
-	max-width: 86%;
+	max-width: 76%;
 	padding-left: 10px;
 	box-sizing: border-box;
 	vertical-align: top;

@@ -72,8 +72,8 @@ class Tutorial extends Blogpost {
 	}
 
 	public function afterUpdate(&$datas = null, $where = null) {
-		if (isset($where['id'])) {
-			$this->doKeyWordLinking($datas, $where['id']);
+		if (isset($where[$this->db->dbprefix($this->getTableName()).'.id'])) {
+			$this->doKeyWordLinking($datas, $where[$this->db->dbprefix($this->getTableName()).'.id']);
 		}
 		parent::afterUpdate($datas, $where);
 	}
@@ -108,7 +108,7 @@ class Tutorial extends Blogpost {
 		}
 	}
 
-	public function keySearch($limit = null, $offset = null, $search = null) {
+	public function keySearch($limit = null, $offset = null, $search = null, $userId = null) {
 		if ($limit !== null) {
 			$this->db->limit($offset, $limit);
 		}
@@ -129,10 +129,18 @@ class Tutorial extends Blogpost {
 		$this->db->where($this->db->escape($search)." LIKE CONCAT('%',$table_hash.content,'%')");
 		$this->db->order_by('matchings DESC');
 		$this->db->group_by(self::TABLE_NAME.'.id');
-
+		$userId = ($userId) ? $userId : user_id();
+		$this->db->where(array('user_id'=>$userId));
 		return $this->get();
 	}
 
+	public function getOwn($userId = null) {
+		$this->join(User::$TABLE_NAME, User::$TABLE_NAME.'.id = '.$this->db->dbprefix(Post::$TABLE_NAME).'.user_id', 'left');
+		$this->db->select('login as author');
+		$userId = ($userId) ? $userId : user_id();
+		$this->db->where(array('user_id'=>$userId));
+		return $this->get();
+	}
 }
 ?>
 

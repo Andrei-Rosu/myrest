@@ -38,11 +38,13 @@
 				<li>
 					<a href="<?php echo base_url(); ?>">Accueil</a>
 				</li>
+				<?php if(is_connected()): ?>
 				<li>
 					<a href="<?php echo base_url('tutorials'); ?>">
 						Les wikis
 					</a>
 				</li>
+				<?php endif; ?>
 			</ul>
 		</header>
 		
