@@ -15,13 +15,18 @@ class Tutorials extends MY_Controller {
 		$this->load->library('mypagination');
 	}
 	
-	public function index() {
-		$this->session->unset_userdata('user_tuto_search');
-		$this->load->model('tutorial');
-		$tutorials = $this->tutorial->getOwn();
-		$this->layout->view('tutorials/index', array('tutorials'=>$tutorials));
+	public function index($limit='start',$page=1) {
+		redirect('tutorials/all');
 	}
 	
+	public function all($limit='start',$page=1) {
+		$this->session->unset_userdata('user_tuto_search');
+		$this->load->model('tutorial');
+		$tutorials = $this->mypagination->paginate('searched-tutos', $this->tutorial, $limit, 10, $methodName = 'getOwn');
+		$this->layout->view('tutorials/index', array('tutorials'=>$tutorials));
+	}
+
+
 	public function search($limit='start',$page=1) {
 //		$this->output->enable_profiler(TRUE);
 		$tutorials = $this->doSearch($limit,$page);

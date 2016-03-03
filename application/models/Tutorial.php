@@ -134,11 +134,14 @@ class Tutorial extends Blogpost {
 		return $this->get();
 	}
 
-	public function getOwn($userId = null) {
+	public function getOwn($limit = null, $offset = null, $userId = null) {
 		$this->join(User::$TABLE_NAME, User::$TABLE_NAME.'.id = '.$this->db->dbprefix(Post::$TABLE_NAME).'.user_id', 'left');
 		$this->db->select('login as author');
 		$userId = ($userId) ? $userId : user_id();
 		$this->db->where(array('user_id'=>$userId));
+		if ($limit !== null) {
+			$this->db->limit($offset, $limit);
+		}
 		return $this->get();
 	}
 }

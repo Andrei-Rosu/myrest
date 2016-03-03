@@ -9,6 +9,6 @@
 		<?php foreach($tutorials as $tutorial): ?>
 		<?php $this->load->view('tutorials/includes/tutorial-row', array('tutorial'=>$tutorial)); ?>
 		<?php endforeach; ?>
-	<?php echo pagination('searched-tutos', base_url('tutorials/search')); ?>
+	<?php echo pagination('searched-tutos', current_url()); ?>
 </div>
 <?php endif; ?>
