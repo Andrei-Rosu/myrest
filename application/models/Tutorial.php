@@ -126,7 +126,8 @@ class Tutorial extends Blogpost {
 		$this->db->select('count(*) as matchings');
 		$this->db->select('login as author');
 		$table_hash = Hashtag::TABLE_NAME;
-		$this->db->where($this->db->escape($search)." LIKE CONCAT('%',$table_hash.content,'%')");
+		$this->db->where("$table_hash.content",$search);
+//		$this->db->where($this->db->escape($search)." LIKE CONCAT('%',$table_hash.content,'%')");
 		$this->db->order_by('matchings DESC');
 		$this->db->group_by(self::TABLE_NAME.'.id');
 		$userId = ($userId) ? $userId : user_id();
