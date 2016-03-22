@@ -15,11 +15,11 @@ class Tutorials extends MY_Controller {
 		$this->load->library('mypagination');
 	}
 	
-	public function index($limit='start',$page=1) {
+	public function index($limit='start',$page=0) {
 		redirect('tutorials/all');
 	}
 	
-	public function all($limit='start',$page=1) {
+	public function all($limit='start',$page=0) {
 		$this->session->unset_userdata('user_tuto_search');
 		$this->load->model('tutorial');
 		$tutorials = $this->mypagination->paginate('searched-tutos', $this->tutorial, $page, 10, $methodName = 'getOwn');
@@ -27,7 +27,7 @@ class Tutorials extends MY_Controller {
 	}
 
 
-	public function search($limit='start',$page=1) {
+	public function search($limit='start',$page=0) {
 //		$this->output->enable_profiler(TRUE);
 		$tutorials = $this->doSearch($limit,$page);
 		$this->layout->view('tutorials/index', array('tutorials'=>$tutorials));
@@ -37,7 +37,7 @@ class Tutorials extends MY_Controller {
 		$this->layout->view('tutorials/see', array('idTuto'=>$id));
 	}
 	
-	private function doSearch($limit='start',$page=1) {
+	private function doSearch($limit='start',$page=0) {
 		
 		$searched = $this->input->get('search');
 		
