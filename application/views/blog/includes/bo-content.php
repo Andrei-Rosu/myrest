@@ -72,7 +72,11 @@
 		}
 		$("#blogpost_add_description").wysibb(wbbOpt);
 		$("#blogpost_add_content").wysibb(wbbOpt);
+		
 	});
+</script>
+
+<script>
 </script>
 
 

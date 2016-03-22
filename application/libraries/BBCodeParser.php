@@ -22,11 +22,9 @@ class BBCodeParser extends JBBCode\Parser {
 		$builder->setUseOption(true);
 		$this->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('code', '<pre>{param}</pre>');
+		$builder = new JBBCode\CodeDefinitionBuilder('code', '<pre class="brush: {option}; toolbar: false; first-line: 1; class-name: \'my_personnal_code\'">{param}</pre>');
+		$builder->setUseOption(true);
 		$this->addCodeDefinition($builder->build());
-//		$builder = new JBBCode\CodeDefinitionBuilder('code', '<pre class="brush: {option}; toolbar: false; first-line: 1; class-name: \'my_personnal_code\'">{param}</pre>');
-//		$builder->setUseOption(true);
-//		$this->addCodeDefinition($builder->build());
 		
 		$builder = new JBBCode\CodeDefinitionBuilder('image', '<img src="{option}" alt="{param}"/>');
 		$builder->setUseOption(true);
@@ -84,10 +82,16 @@ class BBCodeParser extends JBBCode\Parser {
 		$builder = new JBBCode\CodeDefinitionBuilder('justify', '<div align="justify">{param}</div>');
 		$this->addCodeDefinition($builder->build());
 
-		for($i=2; $i<=6; $i++) {
-			$builder = new JBBCode\CodeDefinitionBuilder('h'.$i, '<h'.$i.'>{param}</h'.$i.'>');
-			$this->addCodeDefinition($builder->build());
-		}
+		/*		 * ********** la suite est non implémentée à ce jour côté javascript !! ** */
+		$builder = new JBBCode\CodeDefinitionBuilder('section1', '<h2 class="section" id="{option}">{param}</h1>');
+		//$builder->setUseOption(true);
+		$this->addCodeDefinition($builder->build());
+
+		$builder = new JBBCode\CodeDefinitionBuilder('section2', '<h3 class="section" >{param}</h2>');
+		$this->addCodeDefinition($builder->build());
+		
+		$builder = new JBBCode\CodeDefinitionBuilder('section3', '<h4 class="section" >{param}</h2>');
+		$this->addCodeDefinition($builder->build());
 
 		$builder = new JBBCode\CodeDefinitionBuilder('p', '<p>{param}</p>');
 		$this->addCodeDefinition($builder->build());
@@ -95,13 +99,11 @@ class BBCodeParser extends JBBCode\Parser {
 		$builder = new JBBCode\CodeDefinitionBuilder('ol', '<ol>{param}</ol>');
 		$this->addCodeDefinition($builder->build());
 		
-		$builder = new JBBCode\CodeDefinitionBuilder('ul', '<ul>{param}</ul>');
-		$this->addCodeDefinition($builder->build());
-		
 		$builder = new JBBCode\CodeDefinitionBuilder('list', '<ul>{param}</ul>');
 		$this->addCodeDefinition($builder->build());
 		
-		$builder = new JBBCode\CodeDefinitionBuilder('li', '<li>{param}</li>');
+		$builder = new JBBCode\CodeDefinitionBuilder('list', '<ol>{param}</ol>');
+		$builder->setUseOption(true);
 		$this->addCodeDefinition($builder->build());
 		
 		$builder = new JBBCode\CodeDefinitionBuilder('*', '<li>{param}</li>');

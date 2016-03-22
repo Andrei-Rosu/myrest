@@ -100,8 +100,6 @@ class Mypagination {
 		$offset = $pagination['offset'];
 		$max = $pagination['max'];
 		$target = $target_action;
-		$indexOfStart = strpos($target, '/start/');
-		if($indexOfStart !== false) $target = substr($target, 0, $indexOfStart);
 		if ($max > 0) {
 			$html = '<'.$mainWraper.' class="pagination" id="pagination-'.$id.'"><'.$subWrapper.'><a href="' . $target . '/start/' . max(0, $start - $amplitude - $jump) . '">&laquo;</a></'.$subWrapper.'>';
 			for ($i = max(0, $start - $amplitude); $i <= min($max / $offset, $max + $amplitude); $i++) {

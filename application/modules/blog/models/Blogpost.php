@@ -78,7 +78,6 @@ class Blogpost extends Post {
 				'label' => translate('Description'),
 				'rules' => 'min_length[20]',
 			),
-			
 			array(
 				'field' => 'image',
 				'label' => translate('Image'),

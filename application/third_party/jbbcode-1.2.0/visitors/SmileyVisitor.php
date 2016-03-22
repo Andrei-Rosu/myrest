@@ -53,8 +53,7 @@ class SmileyVisitor implements \JBBCode\NodeVisitor {
 
 	function visitTextNode(\JBBCode\TextNode $textNode) {
 		/* Conversion tag bbcode en image */
-		$tagname = $textNode->getParent()->getTagName();
-		if($tagname != 'sectioncode' && $tagname != 'code'){
+		if($textNode->getParent()->getTagName() != 'sectioncode'){
 			foreach ($this->tableauCode as $codeSmiley => $nomImage) {
 				$textNode->setValue(
 						str_replace($codeSmiley, 

@@ -303,3 +303,12 @@ ALTER TABLE `posts_blog_tutorial`
 --changeset thibault:3_add_keys_to_tutorials
 ALTER TABLE `posts_blog_tutorial` ADD `keys` VARCHAR( 255 ) NOT NULL ;
 
+
+
+
+
+
+
+
+
+

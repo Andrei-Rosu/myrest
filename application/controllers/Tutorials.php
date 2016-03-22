@@ -22,7 +22,7 @@ class Tutorials extends MY_Controller {
 	public function all($limit='start',$page=1) {
 		$this->session->unset_userdata('user_tuto_search');
 		$this->load->model('tutorial');
-		$tutorials = $this->mypagination->paginate('searched-tutos', $this->tutorial, $limit, 10, $methodName = 'getOwn');
+		$tutorials = $this->mypagination->paginate('searched-tutos', $this->tutorial, $page, 10, $methodName = 'getOwn');
 		$this->layout->view('tutorials/index', array('tutorials'=>$tutorials));
 	}
 
@@ -60,7 +60,7 @@ class Tutorials extends MY_Controller {
 		}
 		
 		$this->tutorial->search = $search;
-		return $this->mypagination->paginate('searched-tutos', $this->tutorial, $limit, 10, $methodName = 'keySearch');
+		return $this->mypagination->paginate('searched-tutos', $this->tutorial, $page, 10, $methodName = 'keySearch');
 	}
 }
 
