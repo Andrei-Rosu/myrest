@@ -47,8 +47,9 @@ class Tutorials extends MY_Controller {
 				
 		$tutorials = array();
 		if(!$searched) return $tutorials;
-		$search = $searched;
-		$searched = alias($searched);
+		$search = explode(' ', $searched);
+		$search = array_map('alias', $search);
+		$searched = implode(' ', $search);
 		$this->session->set_userdata('user_tuto_search',$searched);
 		
 		$this->load->library('form_validation');

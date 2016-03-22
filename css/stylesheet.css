@@ -120,3 +120,13 @@ ul.pagination li {
 	display: inline;
 	margin: 4px;
 }
+
+.result-details {
+	margin-top:10px;
+	font-style: italic;
+	font-size: 0.7em;
+}
+
+.wiki-row .authoring {
+	font-size: 0.8em;
+}

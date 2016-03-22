@@ -22,5 +22,10 @@
 		<div class="actions">
 			<a href="<?php echo base_url('tutorials/see/' . $tutorial->id); ?>" title="lire ce bookmark">Lire</a>
 		</div>
+		<?php if(isset($tutorial->matchings)): ?>
+		<div class="result-details">
+			<span class="matching">Pertinence : <span class="value"><?php echo $tutorial->matchings; ?></span></span>
+		</div>
+		<?php endif; ?>
 	</div>
 </div>
