@@ -90,7 +90,7 @@
 <p><label>Description :</label><textarea id="blogpost_add_description" name="description_bb"><?php echo isset($blogpost_add_pop['description_bb']) ? $blogpost_add_pop['description_bb'] : '' ?></textarea></p>
 <p><label>Image :</label><input type="file" id="blog_add_image" name="image"/></p>
 <p><label>Contenu :</label><textarea id="blogpost_add_content" rows="10" name="content_bb"><?php echo isset($blogpost_add_pop['content_bb']) ? $blogpost_add_pop['content_bb'] : '' ?></textarea></p>
-<p class="form-group"><label>Mot clés</label><textarea id="blogpost_add_keys" name="keys" rows="4" ><?php echo isset($blogpost_add_pop['keys']) ? $blogpost_add_pop['keys'] : '' ?></textarea></p>
+<p class="form-group"><label>Mot clés</label><br/><textarea id="blogpost_add_keys" name="keys" rows="4" cols="50"><?php echo isset($blogpost_add_pop['keys']) ? $blogpost_add_pop['keys'] : '' ?></textarea></p>
 <?php if (isset($blogpost_add_pop['id'])): ?>
 	<input type="hidden" value="<?php echo $blogpost_add_pop['id'] ?>" name="id"/>
 <?php endif; ?>
