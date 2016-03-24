@@ -19,7 +19,7 @@
     </head>
     <body>
 		
-		<header>
+		<header class="card">
 			<?php if(!is_connected()): ?>
 			<div id="connection">
 				<?php echo Modules::run('memberspace/connection/basic'); ?>

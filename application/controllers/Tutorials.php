@@ -9,6 +9,7 @@ class Tutorials extends MY_Controller {
 		parent::__construct($param);
 		if(!is_connected()) {
 			add_error(translate('Vous ne pouvez pas accéder à vos wikis sans vous être authentifié'));
+			redirect('home');
 		}
 		$this->load->helper('pagination');
 		$this->load->model('tutorial');
