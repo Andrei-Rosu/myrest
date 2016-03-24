@@ -19,5 +19,7 @@
 		par <?php echo $blogpost->author; ?>
 	</small>
 
-
+	<div class="actions">
+		<?php if (user_can('update', 'post', $blogpost->id)): ?><a href="<?php echo base_url("tutorials/edit/$blogpost->id"); ?>">Modifier</a><?php endif; ?>
+	</div>
 </div>

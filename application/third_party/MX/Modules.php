@@ -63,7 +63,6 @@ class Modules {
 	 * */
 	public static function run($module) {
 		$method = 'index';
-
 		if (($pos = strrpos($module, '/')) != FALSE) {
 			$method = substr($module, $pos + 1);
 			$module = substr($module, 0, $pos);
@@ -78,7 +77,6 @@ class Modules {
 				return ($output !== NULL) ? $output : $buffer;
 			}
 		}
-
 		log_message('error', "Module controller failed to run: {$module}/{$method}");
 	}
 	
@@ -108,12 +106,10 @@ class Modules {
 
 		/* get the requested controller class name */
 		$alias = strtolower(basename($module));
-
 		/* create or return an existing controller from the registry */
 		if (!isset(self::$registry[$alias])) {
 			/* find the controller */
 			list($class) = CI::$APP->router->locate(explode('/', $module));
-
 			/* controller cannot be located */
 			if (empty($class))
 				return;

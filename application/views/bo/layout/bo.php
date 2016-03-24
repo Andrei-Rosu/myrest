@@ -26,7 +26,7 @@ and open the template in the editor.
 		</script>
 		
 		<!-- Load WysiBB JS and Theme -->
-		<script src="<?php echo base_url('js/wysibb/jquery.wysibb.js'); ?>"></script>
+		<script src="<?php echo base_url('js/wysibb/jquery.wysibb.min.js'); ?>"></script>
 		<link rel="stylesheet" href="<?php echo base_url('css/wysibb/theme/wbbtheme.css'); ?>" type="text/css" />
 		<?php echo $css_for_layout ?>
 

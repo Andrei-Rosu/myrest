@@ -95,16 +95,29 @@ pre {
 	display: inline-block;
 	vertical-align: top;
 	width: 23%;
-	padding-right: 10px;
+	padding-right: 1%;
 	box-sizing: border-box;
 }
 
 .wiki-row .infos {
 	display: inline-block;
-	max-width: 76%;
+	max-width: 75%;
 	padding-left: 10px;
 	box-sizing: border-box;
 	vertical-align: top;
+}
+
+@media screen and (max-width: 700px) {
+	.wiki-row > .img {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin-bottom: 10px;
+	}
+	.wiki-row .infos {
+		display: block;
+		padding: 0;
+	}
 }
 
 .wiki-row > .img img {
@@ -129,4 +142,16 @@ ul.pagination li {
 
 .wiki-row .authoring {
 	font-size: 0.8em;
+}
+
+.wiki .actions {
+	margin-top: 15px;
+}
+
+.form_add_blogpost p {
+	margin: 20px 0;
+}
+
+.form_add_blogpost .wysibb {
+	margin-top: 10px;
 }

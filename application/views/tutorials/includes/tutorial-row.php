@@ -21,6 +21,9 @@
 		</div>
 		<div class="actions">
 			<a href="<?php echo base_url('tutorials/see/' . $tutorial->id); ?>" title="lire ce bookmark">Lire</a>
+			<?php if(user_can('update', 'post', $tutorial->id)): ?>
+			<a href=<?php echo base_url("tutorials/edit/$tutorial->id"); ?>>Modifier</a>
+			<?php endif; ?>
 		</div>
 		<?php if(isset($tutorial->matchings)): ?>
 		<div class="result-details">

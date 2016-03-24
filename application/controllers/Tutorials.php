@@ -63,5 +63,24 @@ class Tutorials extends MY_Controller {
 		$this->tutorial->search = $search;
 		return $this->mypagination->paginate('searched-tutos', $this->tutorial, $page, 10, $methodName = 'keySearch');
 	}
+	
+	private function addEditor()  {
+		$this->layout->js('js/wysibb/jquery.wysibb.min.js');
+		$this->layout->css('css/wysibb/theme/wbbtheme.css');
+	}
+	
+	public function add() {
+		$this->addEditor();
+		$this->layout->view('tutorials/edit');
+	}
+	
+	public function edit($id) {
+		$this->addEditor();
+		$tutorial = $this->tutorial->getId($id);
+		if(!$tutorial){
+			redirect('tutorials/all');
+		}
+		$this->layout->view('tutorials/edit', array('tutorial'=>$tutorial,'idTuto'=>$id));
+	}
 }
 
