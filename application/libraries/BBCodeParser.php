@@ -23,7 +23,7 @@ class BBCodeParser extends JBBCode\Parser {
 		$this->addCodeDefinition($builder->build());
 
 		$builder = new JBBCode\CodeDefinitionBuilder('code', '<pre class="brush: {option}; toolbar: false; first-line: 1; class-name: \'my_personnal_code\'">{param}</pre>');
-		$builder->setUseOption(true);
+//		$builder->setUseOption(true);
 		$this->addCodeDefinition($builder->build());
 		
 		$builder = new JBBCode\CodeDefinitionBuilder('image', '<img src="{option}" alt="{param}"/>');
