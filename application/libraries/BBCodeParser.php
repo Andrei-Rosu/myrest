@@ -108,6 +108,8 @@ class BBCodeParser extends JBBCode\Parser {
 		
 		$builder = new JBBCode\CodeDefinitionBuilder('*', '<li>{param}</li>');
 		$this->addCodeDefinition($builder->build());
+		$builder = new JBBCode\CodeDefinitionBuilder('li', '<li>{param}</li>');
+		$this->addCodeDefinition($builder->build());
 		
 		$builder = new JBBCode\CodeDefinitionBuilder('youtube', '<iframe width="560" height="315" src="{param}" frameborder="0" allowfullscreen></iframe>');
 		$this->addCodeDefinition($builder->build());
