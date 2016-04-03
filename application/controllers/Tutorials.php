@@ -83,5 +83,11 @@ class Tutorials extends MY_Controller {
 		}
 		$this->layout->view('tutorials/edit', array('tutorial'=>$tutorial,'idTuto'=>$id));
 	}
+	
+	public function delete($id) {
+		Modules::run('blog/see/delete', $id, 'tutorial');
+		add_success(translate('Le tutoriel a bien été supprimé"'));
+		redirect('tutorials/all');
+	}
 }
 

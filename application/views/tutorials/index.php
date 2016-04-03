@@ -1,4 +1,8 @@
 
+<form class="card" action="<?php echo base_url('tutorials/add'); ?>">
+	<label>Créer un wiki : </label>
+	<button type="submit">Ajouter</button>
+</form>
 <form class="card" action="<?php echo base_url('tutorials/search'); ?>">
 	<label>Rechercher un wiki : </label><input type="text" name="search" id="InputSearchTuto">
 	<button type="submit">Effectuer une recherche</button>

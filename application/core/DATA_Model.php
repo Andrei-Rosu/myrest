@@ -22,7 +22,8 @@ abstract class DATA_Model extends CI_Model {
 	protected $_extendedInstances;
 	protected $_joins;
 	protected $_compileQueryOnly = false;
-	protected $_locale;
+	protected $_columnsToTranslate;
+	protected $_lastSavedDatas;
 
 	protected function getModelName() {
 		if (!$this->_modelName) {
@@ -183,7 +184,7 @@ abstract class DATA_Model extends CI_Model {
 
 		if (is_module_installed('traductions') && !empty($columnsToTranslate)) {
 			$this->load->helper('locale');
-			$locale = $this->getLocale();
+			$locale = locale();
 			$tableName = $this->getTableName();
 			$tableTranslationsName = $tableName . '_translations';
 			$this->db->join($tableTranslationsName, "$tableTranslationsName.id = $tableName.id AND $tableTranslationsName.lang = '$locale'", 'left');
@@ -348,20 +349,10 @@ abstract class DATA_Model extends CI_Model {
 			}
 		}
 		$this->addErrors($this->upload->error_msg);
-		$hasLang = isset($input['lang']) && $input['lang'];
-		if($hasLang) {
-			$oldLocale = $this->getLocale();
-			$this->setLocale($input['lang']);
+		if ($datas) {
+			return $this->save($this->filterInvalidFields($datas));
 		}
-		if($datas) {
-			$res = $this->save($this->filterInvalidFields($datas));
-		} else {
-			$res = $this->save($this->filterInvalidFields($_POST));
-		}
-		if($hasLang) {
-			$this->setLocale($oldLocale);
-		}
-		return $res;
+		return $this->save($this->filterInvalidFields($_POST));
 	}
 
 	private function doUpload(&$datas, $uploadPath, $key) {
@@ -415,6 +406,7 @@ abstract class DATA_Model extends CI_Model {
 
 	public function get($where = null, $type = 'object', $columns = null) {
 		$this->prepareGet($where, $type, $columns);
+		
 		if ($this->_compileQueryOnly) {
 			return $this->db->get_compiled_select();
 		}
@@ -422,7 +414,8 @@ abstract class DATA_Model extends CI_Model {
 		$this->clear();
 		$numRows = $query->num_rows();
 		if ($numRows) {
-			$res = $this->translate($query->result($type));
+			$res = $query->result($type);
+			$res = $this->translate($res);
 			return $res;
 		}
 		return false;
@@ -459,7 +452,7 @@ abstract class DATA_Model extends CI_Model {
 	public function prepareGet($where = array(), $type = 'object', $columns = null) {
 		$this->makeExtendedJoins();
 		if (!$columns) {
-			$columns = array('*');
+			$columns = array($this->db->dbprefix($this->getTableName()).'.*');
 		} else if (is_string($columns)) {
 			$columns = array($columns);
 		}
@@ -588,7 +581,9 @@ abstract class DATA_Model extends CI_Model {
 			if (array_key_exists($col, $datas))
 				$datasToInsert[$col] = $datas[$col];
 		}
-		return $this->db->insert($this->$modelName->getTableName(), $datasToInsert);
+		$ret = $this->db->insert($this->$modelName->getTableName(), $datasToInsert);
+		$this->_lastSavedDatas = $datasToInsert;
+		return $ret;
 	}
 
 	public function insert($datas = null) {
@@ -612,10 +607,10 @@ abstract class DATA_Model extends CI_Model {
 		$extendedTables = $this->getExtendedTables();
 		$extendedClasses = $this->getExtendedClasses();
 		$primaryCols = $this->$baseModel->getPrimaryColumns();
-
 		if (count($primaryCols) > 1) {
 			// insert on multi primary cols
 			// not supported yet
+			$this->_lastSavedDatas = $datas;
 			$this->afterInsert($insertedId, $datas);
 			return $insertedId;
 		}
@@ -636,7 +631,7 @@ abstract class DATA_Model extends CI_Model {
 		}
 		if (is_module_installed('traductions')) {
 			$this->load->helper('locale');
-			$locale = $this->getLocale();
+			$locale = locale();
 			$columsToTranslate = $this->columnsToTranslate();
 			if (!empty($columsToTranslate)) {
 				$datasTranslate = array('lang' => $locale, $key => $datas[$key]);
@@ -648,6 +643,7 @@ abstract class DATA_Model extends CI_Model {
 				$this->db->insert($this->getTableName() . '_translations', $datasTranslate);
 			}
 		}
+		$this->_lastSavedDatas = $datas;
 		$this->afterInsert($insertedId, $datas);
 		return $insertedId;
 	}
@@ -669,7 +665,7 @@ abstract class DATA_Model extends CI_Model {
 		$key = $primaries[0];
 		if (is_module_installed('traductions')) {
 			$this->load->helper('locale');
-			$locale = $this->getLocale();
+			$locale = locale();
 			$columsToTranslate = $this->columnsToTranslate();
 			if (!empty($columsToTranslate)) {
 				$datasTranslate = array('lang' => $locale, $key => $datas[$key]);
@@ -1020,6 +1016,10 @@ abstract class DATA_Model extends CI_Model {
 			}
 		}
 	}
+	
+	public function getLastSavedDatas() {
+		return $this->_lastSavedDatas;
+	}
 
 	public function getThrough($table, $model, $value, $key = 'id') {
 		$db = $this->db;
@@ -1039,26 +1039,23 @@ abstract class DATA_Model extends CI_Model {
 	}
 
 	public function columnsToTranslate() {
-		return array();
-	}
-	
-	public function setLocale($locale = null) {
-		$this->load->helper('locale');
-		if(!$locale) $this->_locale = locale();
-		else $this->_locale = $locale;
-	}
-	
-	public function getLocale() {
-		$this->load->helper('locale');
-		if(!$this->_locale) {
-			$this->_locale = locale();
+		if($this->_columnsToTranslate === null){
+			$this->_columnsToTranslate = array();
+			$tableTrads = $this->db->dbprefix($this->getTableName().'_translations');
+			if($this->db->table_exists($tableTrads)){
+				$fieldsTrad = $fields = $this->db->list_fields($tableTrads);
+				$schema = $this->getSchema();
+				foreach ($schema as $field) {
+					if(in_array($field.'_lang', $fieldsTrad)) {
+						$this->_columnsToTranslate[] = $field;
+					}
+				}
+			}
 		}
-		return $this->_locale;
+		
+		return $this->_columnsToTranslate;
 	}
-	
-	public function unsetLocale() {
-		$this->_locale = locale();
-	}
+
 //	private function hasAlias() {
 //		$schema = $this->getSchema();
 //		foreach($schema as $col){
