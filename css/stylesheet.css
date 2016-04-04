@@ -214,3 +214,27 @@ ul.pagination li {
 .form_add_blogpost .wysibb {
 	margin-top: 10px;
 }
+
+.list-flash-messages {
+	
+}
+
+.list-flash-messages li {
+	background-color: rgb(230, 230, 230);
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.list-flash-messages.error li {
+	background-color: rgb(255, 130, 130);
+    border-color: darkred;
+}
+.list-flash-messages.success li{
+	background-color: rgb(130, 255, 130);
+    border-color: darkgreen;
+}
+.list-flash-messages.warning  li{
+	background-color: rgb(255, 255, 130);
+    border-color: rgb(255, 255, 0);
+}

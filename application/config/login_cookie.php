@@ -2,7 +2,7 @@
 
 $config = array(
 	'name' => 'user_id',
-	'expire' => '86400',
+	'expire' => '2592000',
 	'prefix'=>'myrest_',
 	'secure'=>false
 );

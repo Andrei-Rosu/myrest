@@ -48,6 +48,7 @@
 			</ul>
 		</header>
 		<?php echo Modules::run('flashmessages/flashMessages/basicstyle'); ?>
+		
         <div id="wrap">
             <?php echo $content_for_layout ?>
         </div><!-- end wrapper -->
