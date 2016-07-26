@@ -134,6 +134,7 @@ header {
 pre {
 	background: rgb(230, 230, 230) none repeat scroll 0 0;
     padding: 10px;
+	overflow-x: auto;
 }
 
 #wiki-list {

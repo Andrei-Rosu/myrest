@@ -41,7 +41,7 @@
 				<?php if(is_connected()): ?>
 				<li>
 					<a href="<?php echo base_url('tutorials'); ?>">
-						Les wikis
+						Mes wikis
 					</a>
 				</li>
 				<?php endif; ?>
