@@ -67,29 +67,29 @@ $db['default']['swap_pre'] = '{PRE}';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['recette']['hostname'] = 'localhost';
+$db['recette']['username'] = 'myrest';
+$db['recette']['password'] = '5b2z6tFt69ZAjef8';
+$db['recette']['database'] = 'myrest';
+$db['recette']['dbdriver'] = 'mysqli';
+$db['recette']['dbprefix'] = '';
+$db['recette']['pconnect'] = FALSE;
+$db['recette']['db_debug'] = TRUE;
+$db['recette']['cache_on'] = FALSE;
+$db['recette']['cachedir'] = '';
+$db['recette']['char_set'] = 'utf8';
+$db['recette']['dbcollat'] = 'utf8_general_ci';
+$db['recette']['swap_pre'] = '{PRE}';
+$db['recette']['autoinit'] = TRUE;
+$db['recette']['stricton'] = FALSE;
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
 
-
 $db['thibault']['hostname'] = 'localhost';
-$db['thibault']['username'] = 'site-core-test';
-$db['thibault']['password'] = 'site-core-test';
-$db['thibault']['database'] = 'site-core-test';
-$db['thibault']['dbdriver'] =  'mysqli';
-$db['thibault']['dbprefix'] =  '';
-$db['thibault']['pconnect'] =  FALSE;
-$db['thibault']['db_debug'] =  TRUE;
-$db['thibault']['cache_on'] =  FALSE;
-$db['thibault']['cachedir'] =  '';
-$db['thibault']['char_set'] =  'utf8';
-$db['thibault']['dbcollat'] =  'utf8_general_ci';
-$db['thibault']['swap_pre'] =  '{PRE}';
-$db['thibault']['autoinit'] =  TRUE;
-$db['thibault']['stricton'] =  FALSE;
-$db['thibault']['hostname'] = 'localhost';
-$db['thibault']['username'] = 'site-core-test';
-$db['thibault']['password'] = 'site-core-test';
-$db['thibault']['database'] = 'site-core-test';
+$db['thibault']['username'] = 'myrest';
+$db['thibault']['password'] = 'myrest';
+$db['thibault']['database'] = 'myrest';
 $db['thibault']['dbdriver'] =  'mysqli';
 $db['thibault']['dbprefix'] =  '';
 $db['thibault']['pconnect'] =  FALSE;
