@@ -1,6 +1,6 @@
-require('./modules/wysibb');
-
 var $ = require('jquery');
+
+require('./modules/wysibb/jquery.wysibb.js');
 
 require('./compiled/homePopup');
 

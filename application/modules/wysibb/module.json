@@ -59,9 +59,9 @@
                 }
             }
         },
-        "__CORE__": {
-            "assets_sr": {
-                "js": {
+        "assets_src": {
+            "js": {
+                "src": {
                     "modules": {
                         "wysibb": {
                             "0": "LICENSE-MIT",
