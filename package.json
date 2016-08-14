@@ -75,7 +75,8 @@
     "sinon-chai": "2.8.0",
     "webpack": "1.12.14",
     "webpack-dev-middleware": "1.5.1",
-    "webpack-hot-middleware": "2.10.0"
+    "webpack-hot-middleware": "2.10.0",
+    "wysibb": "^1.0.0"
   },
   "license": "MIT"
 }
