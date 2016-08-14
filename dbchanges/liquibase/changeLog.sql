@@ -7,6 +7,14 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL,
+  KEY `ci_sessions_timestamp` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --changeset module:install_flashmessages_0_init
 CREATE TABLE IF NOT EXISTS `flash_messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -15,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `flash_messages` (
   `type` varchar(45) NOT NULL DEFAULT 'info',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 
 
 --changeset module:install_memberspace_0_init
@@ -199,38 +206,31 @@ ALTER TABLE `users` ADD `confirmed` TINYINT NOT NULL DEFAULT '0';
 --changeset module:install_memberspace_3_remove_group_id_from_link_users_rights
 ALTER TABLE `links_users_rights` DROP `group_id`;
 
---changeset module:install_bo_0_init
---
--- Structure de la table `users_admin`
---
-
-CREATE TABLE IF NOT EXISTS `users_admin` (
+--changeset module:install_filebrowser_0_init
+CREATE TABLE `files` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL,
-  `forname` varchar(150) NOT NULL,
-  PRIMARY KEY (`id`)
+  `name` varchar(100) NOT NULL,
+  `is_folder` tinyint(4) NOT NULL DEFAULT '0',
+  `file` varchar(255) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `infos` text,
+  `hierarchy` text NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `users_admin`
---
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`),
+  ADD KEY `user_id` (`user_id`) USING BTREE,
+  ADD KEY `type` (`type`);
 
-INSERT INTO `users_admin` (`id`, `name`, `forname`) VALUES
-(1, 'Thibault', 'Truffert');
-INSERT INTO `users_admin` (`id`, `name`, `forname`) VALUES
-(2, 'Alex', 'Taurisano');
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- Contraintes pour la table `users_admin`
---
-ALTER TABLE `users_admin`
-  ADD CONSTRAINT `users_admin_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-
-
-
-
+ALTER TABLE `files`
+  ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `files_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `files` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --changeset module:install_blog_0_init
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -261,15 +261,6 @@ ALTER TABLE `posts_blog`
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
---changeset thibault:1_add_ci_sessions
-CREATE TABLE IF NOT EXISTS `ci_sessions` (
-  `id` varchar(40) NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
-  `data` blob NOT NULL,
-  KEY `ci_sessions_timestamp` (`timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --changeset thibault:2_add_tutorials
 CREATE TABLE IF NOT EXISTS `hashtags` (
@@ -302,12 +293,38 @@ ALTER TABLE `posts_blog_tutorial`
 
 --changeset thibault:3_add_keys_to_tutorials
 ALTER TABLE `posts_blog_tutorial` ADD `keys` VARCHAR( 255 ) NOT NULL ;
+--changeset module:install_bo_0_init
+--
+-- Structure de la table `users_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `users_admin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `forname` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `users_admin`
+--
+
+INSERT INTO `users_admin` (`id`, `name`, `forname`) VALUES
+(1, 'Thibault', 'Truffert');
+INSERT INTO `users_admin` (`id`, `name`, `forname`) VALUES
+(2, 'Alex', 'Taurisano');
+
+--
+-- Contraintes pour la table `users_admin`
+--
+ALTER TABLE `users_admin`
+  ADD CONSTRAINT `users_admin_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 
 
-
-
+--changeset module:install_maintenance_0_init
+INSERT INTO `configurations`(`key`,`value`,`description`) VALUES ('maintenance', '0', 'set it to non-zero and not null value to put the site in maintenance mode');
 
 
 

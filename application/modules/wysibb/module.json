@@ -1,0 +1,59 @@
+{
+    "dependencies": [
+
+    ],
+    "map": {
+        "assets": {
+            "vendor": {
+                "css": {
+                    "wysibb": {
+                        "default": [
+                            "wbbtheme.css"
+                        ],
+                        "fonts": [
+                            "wysibbiconfont-wb.eot",
+                            "wysibbiconfont-wb.ttf",
+                            "wysibbiconfont-wb.woff"
+                        ]
+                    }
+                }
+            }
+        },
+        "__CORE__": {
+            "node_modules": {
+                "wysibb": {
+                    "0": "LICENSE-MIT",
+                    "1": "README.md",
+                    "2": "jquery.wysibb.js",
+                    "lang": [
+                        "ar.js",
+                        "cn.js",
+                        "de.js",
+                        "fr.js",
+                        "pl.js",
+                        "ru.js",
+                        "tr.js",
+                        "ua.js",
+                        "vn.js"
+                    ],
+                    "3": "package.json",
+                    "preset": [
+                        "phpbb3.js"
+                    ],
+                    "theme": {
+                        "default": [
+                            "wbbtheme.css"
+                        ],
+                        "fonts": [
+                            "wysibbiconfont-wb.eot",
+                            "wysibbiconfont-wb.ttf",
+                            "wysibbiconfont-wb.woff"
+                        ]
+                    },
+                    "4": "wysibb.jquery.json"
+                }
+            }
+        }
+    },
+    "version": "1.0.0"
+}

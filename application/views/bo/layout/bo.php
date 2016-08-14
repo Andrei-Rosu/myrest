@@ -12,49 +12,28 @@ and open the template in the editor.
 		<meta name="author" content="">
 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('js/bo/bootstrap/css/bootstrap.css') ?>">
-		<link rel="stylesheet" href="<?php echo base_url('js/bo/font-awesome/css/font-awesome.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/js/bo/bootstrap/css/bootstrap.css') ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/js/bo/font-awesome/css/font-awesome.css'); ?>">
 
-		<script src="<?php echo base_url('js/bo/jquery-1.11.1.min.js') ?>" type="text/javascript"></script>
-		<script src="<?php echo base_url('js/bo/theme.js'); ?>" type="text/javascript"></script>
 
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/bo/theme.css') ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/bo/premium.css') ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/css/bo/theme.css') ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/css/bo/premium.css') ?>">
 
 		<script type="text/javascript">
 			var baseURL = "<?php echo base_url(); ?>";
 		</script>
 		
-		<!-- Load WysiBB JS and Theme -->
-		<script src="<?php echo base_url('js/wysibb/jquery.wysibb.min.js'); ?>"></script>
-		<link rel="stylesheet" href="<?php echo base_url('css/wysibb/theme/wbbtheme.css'); ?>" type="text/css" />
 		<?php echo $css_for_layout ?>
 
 		<?php echo $js_for_layout ?>
 
         <title><?php echo $title_for_layout ?></title>
     </head>
-	<body class=" theme-blue">
+	<body class=" theme-blue" data-module="compiled/bootstrap">
 
 
 		<!-- Demo page code -->
 
-		<script type="text/javascript">
-			$(function () {
-				var match = document.cookie.match(new RegExp('color=([^;]+)'));
-				if (match)
-					var color = match[1];
-				if (color) {
-					$('body').removeClass(function (index, css) {
-						return (css.match(/\btheme-\S+/g) || []).join(' ')
-					})
-					$('body').addClass('theme-' + color);
-				}
-
-				$('[data-popover="true"]').popover({html: true});
-
-			});
-		</script>
 		<style type="text/css">
 			#line-chart {
 				height:300px;
@@ -67,13 +46,7 @@ and open the template in the editor.
 			}
 		</style>
 
-		<script type="text/javascript">
-			$(function () {
-				var uls = $('.sidebar-nav > ul > *').clone();
-				uls.addClass('visible-xs');
-				$('#main-menu').append(uls.clone());
-			});
-		</script>
+		<script type="text/javascript" data-module="modules/bo/switchNav"></script>
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -134,13 +107,14 @@ and open the template in the editor.
 
 		<div class="sidebar-nav">
 			<ul>
-				<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse"><i class="fa fa-fw fa-dashboard"></i> Dashboard<i class="fa fa-collapse"></i></a></li>
-				<li><ul class="dashboard-menu nav nav-list collapse in">
-						<li><a href="<?php echo base_url('bo/home') ?>"><span class="fa fa-caret-right"></span> Main</a></li>
-						<li ><a href="<?php echo base_url('bo/users') ?>"><span class="fa fa-caret-right"></span> Liste des utilisateurs</a></li>
-						<li ><a href="<?php echo base_url('bo/administrators') ?>"><span class="fa fa-caret-right"></span> Liste des administrateurs</a></li>
-					</ul></li>
-
+				<?php $this->load->helper('directory');
+				$modulesPath = './application/modules';
+				$modules = array_reverse(directory_map($modulesPath,1));
+				foreach($modules as $module){
+					if(file_exists($modulesPath.'/'.$module.'views/_bo_menus.php')){
+						$this->load->view($module.'_bo_menus');
+					}
+				}?>
 				<li><a href="#" data-target=".tuto-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-graduation-cap"></i> Tutoriels<i class="fa fa-collapse"></i></a></li>
 				<li><ul class="tuto-menu nav nav-list collapse">
 						<li ><a href="<?php echo base_url('bo/tutorials/all'); ?>"><span class="fa fa-caret-right"></span> Tous les tutoriels</a></li>
@@ -214,31 +188,7 @@ and open the template in the editor.
 						</div>
 					</div>
 				</div>
-				<script type="text/javascript">
-					function parseModal() {
-						console.log('hi');
-						$('.confirm').click(function (e) {
-							var url = $(this).data('url');
-							var body = $(this).data('body');
-							var header = $(this).data('header');
-							var $modal = $('#modal-from-dom');
-							$modal.modal('show');
-							var $removeBtn = $modal.find('.btn-danger');
-							$removeBtn.attr('href', url);
-
-							var $body = $modal.find(".modal-body");
-							$body.html(body);
-							
-							var $header = $modal.find(".modal-header h3");
-							$header.html(header);
-							return false;
-						});
-					}
-					$(function () {
-						parseModal();
-						$(document).ajaxComplete(parseModal);
-					});
-				</script>
+				<script type="text/javascript" data-module="modules/bo/parseModal"></script>
 				<footer>
 					<hr>
 
@@ -249,15 +199,7 @@ and open the template in the editor.
 		</div>
 
 		<?php echo Modules::run('flashmessages/flashMessages/slidedownstyle'); ?>
-		<script src="<?php echo base_url('js/bo/bootstrap/js/bootstrap.js') ?>"></script>
-		<script type="text/javascript">
-					$("[rel=tooltip]").tooltip();
-					$(function () {
-						$('.demo-cancel-click').click(function () {
-							return false;
-						});
-					});
-		</script>
 
+		<script src="<?php echo base_url('assets/local/js/app.js'); ?>"></script>
 
 	</body></html>

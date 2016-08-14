@@ -25,7 +25,7 @@ class Layout {
 
 	function Layout() {
 		$this->obj = & get_instance();
-		$this->layout_view = 'layout/default';
+		$this->layout_view = 'layout/layout/default';
 		// Grab layout from called controller
 	}
 
@@ -57,7 +57,7 @@ class Layout {
 	function assign($datas, $value = null) {
 		if (is_array($datas)) {
 			$this->datas = array_merge($this->datas, $datas);
-		} else if ($value !== null && is_string($datas)) {
+		} else if (is_string($datas)) {
 			$this->datas[$datas] = $value;
 		}
 	}

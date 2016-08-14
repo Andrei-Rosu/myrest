@@ -10,5 +10,5 @@
             "3_remove_group_id_from_link_users_rights.sql"
         ]
     },
-    "version": "0.0.3"
+    "version": "1.0.0"
 }

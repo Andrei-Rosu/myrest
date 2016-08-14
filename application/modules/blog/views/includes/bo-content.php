@@ -1,4 +1,5 @@
 <?php if(is_module_installed('traductions')): ?>
+<?php $this->load->helper('form'); ?>
 <div class="form-group">
 	<label>Langue</label>
 	<?php echo form_dropdown(array('class'=>'form-control', 'id'=>'lang', 'name'=>'lang'), array('fr'=>'Français','en'=>'Anglais','ru'=>'Russe'), $lang) ;?>

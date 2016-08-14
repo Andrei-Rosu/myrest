@@ -67,7 +67,7 @@ $autoload['libraries'] = array('session','database', 'layout/layout');
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('url', 'alias', 'object',  'image', 'traduction', 'module', 'flashmessages/flashmessages', 'memberspace/connection', 'memberspace/authorization');
+$autoload['helper'] = array('url', 'alias',  'images/image', 'traduction', 'module', 'flashmessages/flashmessages', 'memberspace/connection', 'memberspace/authorization');
 
 
 /*

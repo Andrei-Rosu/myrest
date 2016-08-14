@@ -35,6 +35,9 @@ class Tutorials extends MY_Controller {
 	}
 	
 	public function see($id = null) {
+		$this->layout->css('assets/vendor/css/highlightjs/styles/atelier-forest-light.css');
+		$this->layout->js('assets/vendor/js/highlightjs/highlight.pack.js');
+		$this->layout->jscript('hljs.initHighlightingOnLoad();');
 		$this->layout->view('tutorials/see', array('idTuto'=>$id));
 	}
 	

@@ -1,11 +1,11 @@
 {
     "dependencies": [
-
+		
     ],
     "map": {
         "dbchanges": [
             "0_init.sql"
         ]
     },
-    "version": "0.0.1"
+    "version": "1.0.0"
 }

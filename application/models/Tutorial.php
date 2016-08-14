@@ -32,10 +32,10 @@ class Tutorial extends Blogpost {
 
 	public function validationRulesForInsert($datas) {
 		$rules = parent::validationRulesForInsert($datas);
-		foreach($rules as &$rule) {
-			foreach(array('content','description') as $f) {
-				if(isset($rule['field']) && $rule['field'] == $f) {
-					$rule['field'] = $f.'_bb';
+		foreach ($rules as &$rule) {
+			foreach (array('content', 'description') as $f) {
+				if (isset($rule['field']) && $rule['field'] == $f) {
+					$rule['field'] = $f . '_bb';
 					break;
 				}
 			}
@@ -50,10 +50,10 @@ class Tutorial extends Blogpost {
 
 	public function validationRulesForUpdate($datas) {
 		$rules = parent::validationRulesForUpdate($datas);
-		foreach($rules as &$rule) {
-			foreach(array('content','description') as $f) {
-				if(isset($rule['field']) && $rule['field'] == $f) {
-					$rule['field'] = $f.'_bb';
+		foreach ($rules as &$rule) {
+			foreach (array('content', 'description') as $f) {
+				if (isset($rule['field']) && $rule['field'] == $f) {
+					$rule['field'] = $f . '_bb';
 					break;
 				}
 			}
@@ -72,8 +72,8 @@ class Tutorial extends Blogpost {
 	}
 
 	public function afterUpdate(&$datas = null, $where = null) {
-		if (isset($where[$this->db->dbprefix($this->getTableName()).'.id'])) {
-			$this->doKeyWordLinking($datas, $where[$this->db->dbprefix($this->getTableName()).'.id']);
+		if (isset($where[$this->db->dbprefix($this->getTableName()) . '.id'])) {
+			$this->doKeyWordLinking($datas, $where[$this->db->dbprefix($this->getTableName()) . '.id']);
 		}
 		parent::afterUpdate($datas, $where);
 	}
@@ -90,7 +90,7 @@ class Tutorial extends Blogpost {
 	}
 
 	public function doKeyWordLinking($datas, $idTutorial) {
-		
+
 		if (!isset($datas['keys']))
 			return;
 
@@ -100,6 +100,8 @@ class Tutorial extends Blogpost {
 
 		$this->load->model('linktutorialhashtag');
 		$this->load->model('hashtag');
+
+		$this->linktutorialhashtag->delete(array('tutorial_id' => $idTutorial));
 
 		foreach ($keysArray as $key) {
 			$key = alias($key);
@@ -112,8 +114,8 @@ class Tutorial extends Blogpost {
 		if ($limit !== null) {
 			$this->db->limit($offset, $limit);
 		}
-		
-		if(!$search){
+
+		if (!$search) {
 			$search = $this->getData('search');
 		}
 
@@ -122,30 +124,33 @@ class Tutorial extends Blogpost {
 		$this->load->model('memberspace/user');
 		$this->join(Linktutorialhashtag::$TABLE_NAME, $this->db->dbprefix(Linktutorialhashtag::$TABLE_NAME) . '.tutorial_id=' . $this->db->dbprefix(self::TABLE_NAME) . '.id', 'right');
 		$this->join(Hashtag::TABLE_NAME, $this->db->dbprefix(Hashtag::TABLE_NAME) . '.id=' . $this->db->dbprefix(Linktutorialhashtag::$TABLE_NAME) . '.hashtag_id', 'left');
-		$this->join(User::$TABLE_NAME, User::$TABLE_NAME.'.id = '.$this->db->dbprefix(Post::$TABLE_NAME).'.user_id', 'left');
+		$this->join(User::$TABLE_NAME, User::$TABLE_NAME . '.id = ' . $this->db->dbprefix(Post::$TABLE_NAME) . '.user_id', 'left');
 		$this->db->select('count(*) as matchings');
 		$this->db->select('login as author');
 		$table_hash = Hashtag::TABLE_NAME;
-		if(is_string($search)) $this->db->where("$table_hash.content",$search);
-		else if(is_array ($search)) $this->db->where_in("$table_hash.content",$search);
+		if (is_string($search))
+			$this->db->where("$table_hash.content", $search);
+		else if (is_array($search))
+			$this->db->where_in("$table_hash.content", $search);
 //		$this->db->where($this->db->escape($search)." LIKE CONCAT('%',$table_hash.content,'%')");
 		$this->db->order_by('matchings DESC');
-		$this->db->group_by(self::TABLE_NAME.'.id');
+		$this->db->group_by(self::TABLE_NAME . '.id');
 		$userId = ($userId) ? $userId : user_id();
-		$this->db->where(array('user_id'=>$userId));
+		$this->db->where(array('user_id' => $userId));
 		return $this->get();
 	}
 
 	public function getOwn($limit = null, $offset = null, $userId = null) {
-		$this->join(User::$TABLE_NAME, User::$TABLE_NAME.'.id = '.$this->db->dbprefix(Post::$TABLE_NAME).'.user_id', 'left');
+		$this->join(User::$TABLE_NAME, User::$TABLE_NAME . '.id = ' . $this->db->dbprefix(Post::$TABLE_NAME) . '.user_id', 'left');
 		$this->db->select('login as author');
 		$userId = ($userId) ? $userId : user_id();
-		$this->db->where(array('user_id'=>$userId));
+		$this->db->where(array('user_id' => $userId));
 		if ($limit !== null) {
 			$this->db->limit($offset, $limit);
 		}
 		return $this->get();
 	}
+
 }
 ?>
 

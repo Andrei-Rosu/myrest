@@ -1,0 +1,249 @@
+/*@import url("reset.css");*/
+
+@import url("fonts.css");
+
+body {
+	font-family: open_sansregular, Slack-Lato, sans-serif;
+    font-size: 15px;
+	margin: 0;
+	padding: 0 15%;
+	background : url(../images/background/shattered.png) repeat;
+	position: relative;
+}
+
+a {
+	background-color: lightgray;
+    border-radius: 15px;
+    color: rgb(50, 50, 50);
+    font-size: 0.9em;
+    padding: 2px 9px;
+    text-decoration: none;
+}
+
+.card {
+	background: white none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px gray;
+    list-style: outside none none;
+	margin: 20px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+header {
+	position: relative;
+}
+
+#main-menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#main-menu li {
+	display: inline-block;
+	margin: 20px;
+}
+
+#dash, #connection {
+	background-color: white;
+    font-size: 0.7em;
+    padding: 12.5px;
+    position: absolute;
+    right: 10px;
+	max-height: 60px;
+	box-sizing: border-box;
+	overflow: hidden;
+	transition: max-height 0.2s linear;
+}
+
+#dash p, #connection p{
+	margin: 10px 0 20px;
+}
+
+#connection p:first-child {
+	margin-top: 7px;
+}
+
+#dash p:last-child, #connection p:last-child {
+	margin-bottom: 10px;
+}
+
+#dash:hover, #connection:hover {
+	border-bottom: 2px solid rgb(100, 100, 150);
+	max-height: 261px;
+}
+
+#dash > .actions {
+	height: 0px;
+	overflow: hidden;
+	transition: height 0.2s linear;
+}
+
+#dash:hover > .actions {
+	height: 27px;
+}
+
+
+#wrap {
+	margin-bottom: 20px;
+}
+
+.wiki {
+	margin: auto;
+}
+
+.wiki-heading {
+	background: rgb(240, 240, 240) none repeat scroll 0 0;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    box-shadow: 0 0 2px rgb(240, 240, 240) inset;
+    margin: 0 -20px 40px;
+    padding: 15px 0;
+}
+
+.wiki-img {
+	box-sizing: border-box;
+    display: inline-block;
+    max-width: 25%;
+    padding-right: 20px;
+    vertical-align: middle;
+}
+
+.wiki-img img {
+	width: 100%;
+}
+
+.wiki h1 {
+	box-sizing: border-box;
+    display: inline-block;
+    max-width: 74%;
+    vertical-align: middle;
+	font-family: compactabold, Slack-Lato, sans-serif;
+	font-size : 3em;
+	font-weight: normal;
+}
+
+.wiki-content {
+	margin: 20px 0;
+}
+
+.wiki-content img {
+	max-width: 100%;
+}
+
+pre {
+	font-size: 0.9em;
+	p {
+		margin-top: 3px;
+		margin-bottom: -18px;
+	}
+}
+
+h2 {
+	margin-top: 40px;
+}
+
+#wiki-list {
+}
+
+.wiki-row {
+	background-color: rgb(240, 240, 240);
+    border-bottom: 3px solid rgb(100, 100, 150);
+    margin: 0 0 20px;
+    padding: 20px;
+}
+
+.wiki-row h2 {
+	margin-top: 0;
+}
+
+.wiki-row > .img {
+	display: inline-block;
+	vertical-align: top;
+	width: 23%;
+	padding-right: 1%;
+	box-sizing: border-box;
+}
+
+.wiki-row .infos {
+	display: inline-block;
+	max-width: 75%;
+	padding-left: 10px;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+@media screen and (max-width: 700px) {
+	.wiki-row > .img {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin-bottom: 10px;
+	}
+	.wiki-row .infos {
+		display: block;
+		padding: 0;
+	}
+}
+
+.wiki-row > .img img {
+	width: 100%;
+}
+
+ul.pagination {
+	list-style: none;
+	padding: 0;
+}
+
+ul.pagination li {
+	display: inline;
+	margin: 4px;
+}
+
+.result-details {
+	margin-top:10px;
+	font-style: italic;
+	font-size: 0.7em;
+}
+
+.wiki-row .authoring {
+	font-size: 0.8em;
+}
+
+.wiki .actions {
+	margin-top: 15px;
+}
+
+.form_add_blogpost p {
+	margin: 20px 0;
+}
+
+.form_add_blogpost .wysibb {
+	margin-top: 10px;
+}
+
+.list-flash-messages {
+	
+}
+
+.list-flash-messages li {
+	background-color: rgb(230, 230, 230);
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.list-flash-messages.error li {
+	background-color: rgb(255, 130, 130);
+    border-color: darkred;
+}
+.list-flash-messages.success li{
+	background-color: rgb(130, 255, 130);
+    border-color: darkgreen;
+}
+.list-flash-messages.warning  li{
+	background-color: rgb(255, 255, 130);
+    border-color: rgb(255, 255, 0);
+}
+

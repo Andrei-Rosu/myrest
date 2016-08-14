@@ -45,5 +45,6 @@ $route['404_override'] = '';
 
 $route['bo/tutorials/new'] = "bo/tutorials/newOne";
 $route['bo/tutorials/new/(:any)'] = "bo/tutorials/newOne/$1";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
