@@ -1,4 +1,3 @@
-
 <?php if(is_module_installed('traductions')): ?>
 	<?php $this->load->helper('form'); ?>
 <p>
