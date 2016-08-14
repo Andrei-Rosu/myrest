@@ -1,4 +1,4 @@
-require('wysibb');
+require('./modules/wysibb');
 
 var $ = require('jquery');
 

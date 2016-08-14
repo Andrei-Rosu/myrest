@@ -16,41 +16,85 @@
                             "wysibbiconfont-wb.woff"
                         ]
                     }
+                },
+                "images": {
+                    "smilies": [
+                        "alien.png",
+                        "angel.png",
+                        "angry.png",
+                        "blink.png",
+                        "blush.png",
+                        "cheerful.png",
+                        "cool.png",
+                        "credits.txt",
+                        "cwy.png",
+                        "devil.png",
+                        "dizzy.png",
+                        "ermm.png",
+                        "face.png",
+                        "getlost.png",
+                        "grin.png",
+                        "happy.png",
+                        "heart.png",
+                        "kissing.png",
+                        "laughing.png",
+                        "ninja.png",
+                        "pinch.png",
+                        "pouty.png",
+                        "sad.png",
+                        "shocked.png",
+                        "sick.png",
+                        "sideways.png",
+                        "silly.png",
+                        "sleeping.png",
+                        "smile.png",
+                        "tongue.png",
+                        "unsure.png",
+                        "w00t.png",
+                        "wassat.png",
+                        "whistling.png",
+                        "wink.png",
+                        "wub.png"
+                    ]
                 }
             }
         },
         "__CORE__": {
-            "node_modules": {
-                "wysibb": {
-                    "0": "LICENSE-MIT",
-                    "1": "README.md",
-                    "2": "jquery.wysibb.js",
-                    "lang": [
-                        "ar.js",
-                        "cn.js",
-                        "de.js",
-                        "fr.js",
-                        "pl.js",
-                        "ru.js",
-                        "tr.js",
-                        "ua.js",
-                        "vn.js"
-                    ],
-                    "3": "package.json",
-                    "preset": [
-                        "phpbb3.js"
-                    ],
-                    "theme": {
-                        "default": [
-                            "wbbtheme.css"
-                        ],
-                        "fonts": [
-                            "wysibbiconfont-wb.eot",
-                            "wysibbiconfont-wb.ttf",
-                            "wysibbiconfont-wb.woff"
-                        ]
-                    },
-                    "4": "wysibb.jquery.json"
+            "assets_sr": {
+                "js": {
+                    "modules": {
+                        "wysibb": {
+                            "0": "LICENSE-MIT",
+                            "1": "README.md",
+                            "2": "jquery.wysibb.js",
+                            "lang": [
+                                "ar.js",
+                                "cn.js",
+                                "de.js",
+                                "fr.js",
+                                "pl.js",
+                                "ru.js",
+                                "tr.js",
+                                "ua.js",
+                                "vn.js"
+                            ],
+                            "3": "package.json",
+                            "preset": [
+                                "phpbb3.js"
+                            ],
+                            "theme": {
+                                "default": [
+                                    "wbbtheme.css"
+                                ],
+                                "fonts": [
+                                    "wysibbiconfont-wb.eot",
+                                    "wysibbiconfont-wb.ttf",
+                                    "wysibbiconfont-wb.woff"
+                                ]
+                            },
+                            "4": "wysibb.jquery.json"
+                        }
+                    }
                 }
             }
         }
