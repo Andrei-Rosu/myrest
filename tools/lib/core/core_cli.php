@@ -236,19 +236,21 @@ class Core_CLI {
 		$cmd = '';
 		$cmd .= "git init $name;";
 		$cmd .= "cd $name;";
-
-		$cmd .= 'git clone ' . CORE_SOURCE . ';';
+		$sep = Core_utils::os_sep();
+		$cmd .= 'git clone -b site-core-2 ' . CORE_SOURCE .' '. $sep;
 
 		Core_utils::line("executing : $cmd");
 		exec($cmd);
 
 
 		if (!file_exists("$name/site-core/application")) {
-			throw new Core_exception('Ooops. It seems that the core couldn\'t be installed');
+			throw new Core_exception('Ooops. It seems that the core couldn\'t be updated');
 		}
 
 		Core_utils::full_move("$name/site-core/system", "$basepath/system");
 		rename("$name/site-core/application/core/DATA_Model.php", "$basepath/application/core/DATA_Model.php");
+		Core_utils::full_move("$name/site-core/gulpfile.js", "$basepath/gulpfile.js");
+		Core_utils::full_move("$name/site-core/tools", "$basepath/tools");
 		Core_utils::full_move("$name/site-core/application/helpers", "$basepath/application/helpers");
 		Core_utils::full_move("$name/site-core/application/models", "$basepath/application/models");
 		Core_utils::full_move("$name/site-core/application/libraries", "$basepath/application/libraries");
