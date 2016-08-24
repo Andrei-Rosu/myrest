@@ -12,9 +12,8 @@ and open the template in the editor.
 		<meta name="author" content="">
 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/js/bo/bootstrap/css/bootstrap.css') ?>">
-		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/js/bo/font-awesome/css/font-awesome.css'); ?>">
-
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/css/bootstrap/bootstrap.min.css') ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/css/font-awesome/css/font-awesome.css'); ?>">
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/css/bo/theme.css') ?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/css/bo/premium.css') ?>">
@@ -29,7 +28,7 @@ and open the template in the editor.
 
         <title><?php echo $title_for_layout ?></title>
     </head>
-	<body class=" theme-blue" data-module="compiled/bootstrap">
+	<body class="theme-blue">
 
 
 		<!-- Demo page code -->
@@ -77,7 +76,7 @@ and open the template in the editor.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="" href="<?php echo base_url('bo'); ?>"><span class="navbar-brand"><span class="fa fa-rss"></span> My rest</span></a></div>
+				<a class="" href="<?php echo base_url('bo'); ?>"><span class="navbar-brand"><span class="fa fa-rss"></span> Admin Core</span></a></div>
 
 			<div class="navbar-collapse collapse" style="height: 1px;">
 				<ul id="main-menu" class="nav navbar-nav navbar-right">

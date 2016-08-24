@@ -13,12 +13,14 @@
             {
                 "name": "memberspace",
                 "version": "1.0.0"
-            }
-        ],
-        "node": [
+            },
             {
                 "name": "bootstrap",
-                "version": "3"
+                "version": "1.0.0"
+            },
+            {
+                "name": "font-awesome",
+                "version": "1.0.0"
             }
         ]
     },
@@ -51,153 +53,12 @@
                 "src": {
                     "modules": {
                         "bo": [
+                            "jquery.js",
                             "parseModal.js",
                             "parseTooltips.js",
                             "switchNav.js"
                         ]
                     }
-                }
-            }
-        },
-        "__CORE__": {
-            "node_modules": {
-                "bootstrap": {
-                    "0": "CHANGELOG.md",
-                    "1": "Gruntfile.js",
-                    "2": "LICENSE",
-                    "3": "README.md",
-                    "dist": {
-                        "css": [
-                            "bootstrap-theme.css",
-                            "bootstrap-theme.css.map",
-                            "bootstrap-theme.min.css",
-                            "bootstrap-theme.min.css.map",
-                            "bootstrap.css",
-                            "bootstrap.css.map",
-                            "bootstrap.min.css",
-                            "bootstrap.min.css.map"
-                        ],
-                        "fonts": [
-                            "glyphicons-halflings-regular.eot",
-                            "glyphicons-halflings-regular.svg",
-                            "glyphicons-halflings-regular.ttf",
-                            "glyphicons-halflings-regular.woff",
-                            "glyphicons-halflings-regular.woff2"
-                        ],
-                        "js": [
-                            "bootstrap.js",
-                            "bootstrap.min.js",
-                            "npm.js"
-                        ]
-                    },
-                    "fonts": [
-                        "glyphicons-halflings-regular.eot",
-                        "glyphicons-halflings-regular.svg",
-                        "glyphicons-halflings-regular.ttf",
-                        "glyphicons-halflings-regular.woff",
-                        "glyphicons-halflings-regular.woff2"
-                    ],
-                    "grunt": [
-                        ".jshintrc",
-                        "bs-commonjs-generator.js",
-                        "bs-glyphicons-data-generator.js",
-                        "bs-lessdoc-parser.js",
-                        "bs-raw-files-generator.js",
-                        "change-version.js",
-                        "configBridge.json",
-                        "npm-shrinkwrap.json",
-                        "sauce_browsers.yml"
-                    ],
-                    "js": [
-                        "affix.js",
-                        "alert.js",
-                        "button.js",
-                        "carousel.js",
-                        "collapse.js",
-                        "dropdown.js",
-                        "modal.js",
-                        "popover.js",
-                        "scrollspy.js",
-                        "tab.js",
-                        "tooltip.js",
-                        "transition.js"
-                    ],
-                    "less": {
-                        "0": "alerts.less",
-                        "1": "badges.less",
-                        "2": "bootstrap.less",
-                        "3": "breadcrumbs.less",
-                        "4": "button-groups.less",
-                        "5": "buttons.less",
-                        "6": "carousel.less",
-                        "7": "close.less",
-                        "8": "code.less",
-                        "9": "component-animations.less",
-                        "10": "dropdowns.less",
-                        "11": "forms.less",
-                        "12": "glyphicons.less",
-                        "13": "grid.less",
-                        "14": "input-groups.less",
-                        "15": "jumbotron.less",
-                        "16": "labels.less",
-                        "17": "list-group.less",
-                        "18": "media.less",
-                        "mixins": [
-                            "alerts.less",
-                            "background-variant.less",
-                            "border-radius.less",
-                            "buttons.less",
-                            "center-block.less",
-                            "clearfix.less",
-                            "forms.less",
-                            "gradients.less",
-                            "grid-framework.less",
-                            "grid.less",
-                            "hide-text.less",
-                            "image.less",
-                            "labels.less",
-                            "list-group.less",
-                            "nav-divider.less",
-                            "nav-vertical-align.less",
-                            "opacity.less",
-                            "pagination.less",
-                            "panels.less",
-                            "progress-bar.less",
-                            "reset-filter.less",
-                            "reset-text.less",
-                            "resize.less",
-                            "responsive-visibility.less",
-                            "size.less",
-                            "tab-focus.less",
-                            "table-row.less",
-                            "text-emphasis.less",
-                            "text-overflow.less",
-                            "vendor-prefixes.less"
-                        ],
-                        "19": "mixins.less",
-                        "20": "modals.less",
-                        "21": "navbar.less",
-                        "22": "navs.less",
-                        "23": "normalize.less",
-                        "24": "pager.less",
-                        "25": "pagination.less",
-                        "26": "panels.less",
-                        "27": "popovers.less",
-                        "28": "print.less",
-                        "29": "progress-bars.less",
-                        "30": "responsive-embed.less",
-                        "31": "responsive-utilities.less",
-                        "32": "scaffolding.less",
-                        "33": "tables.less",
-                        "34": "theme.less",
-                        "35": "thumbnails.less",
-                        "36": "tooltip.less",
-                        "37": "type.less",
-                        "38": "utilities.less",
-                        "39": "variables.less",
-                        "40": "wells.less"
-                    },
-                    "4": "package.json"
                 }
             }
         }
