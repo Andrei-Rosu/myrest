@@ -18,7 +18,18 @@
     "map": {
         "dbchanges": [
             "0_init.sql"
-        ]
+        ],
+        "assets_src": {
+            "js": {
+                "src": {
+                    "modules": {
+                        "maintenance": [
+                            "update.js"
+                        ]
+                    }
+                }
+            }
+        }
     },
     "version": "1.0.0"
 }
