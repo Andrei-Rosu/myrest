@@ -2,6 +2,7 @@
     "description": "A site core for haveasite",
     "name": "Haveasite\/sitecore",
     "require": {
-        "ext-imagick": "*"
+        "ext-imagick": "*",
+        "jbbcode/jbbcode": "^1.3"
     }
 }
