@@ -49,10 +49,10 @@ var codeModal = function (command, opt, queryState) {
 
 	var those = this;
 	var pos = this.getRange();
-	console.log(pos);
 	$form.popup({
 		closeButton: '<span class="close-bt"></span>'
 	});
+	
 	$('#popup-wysibb-code-form form').submit(function (e) {
 		e.preventDefault();
 		var lang = $(this).find('[name="language"]').val();
