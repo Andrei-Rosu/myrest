@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Connection extends MY_Controller {
+class Connection extends MX_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -25,7 +25,8 @@ class Connection extends MY_Controller {
 	}
 
 	public function tryLogin($userModel = 'memberspace/user') {
-		$this->load->library('memberspace/loginManager', $userModel);
+		$this->load->library('memberspace/loginManager');
+		$this->loginmanager->setUserModel($userModel);
 		$this->loginmanager->connectUserFromPost();
 	}
 }

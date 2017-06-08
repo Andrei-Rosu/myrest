@@ -338,3 +338,8 @@ INSERT INTO `configurations`(`key`,`value`,`description`) VALUES ('maintenance',
 
 
 
+
+--changeset module:install_memberspace_4_change_password_length_for_users
+ALTER TABLE `users` CHANGE `password` `password` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+--changeset module:install_memberspace_5_change_index_size_for_right_name_type
+ALTER TABLE `rights` DROP INDEX `name_type`, ADD UNIQUE `name_type` (`name`, `type`, `object_key`) USING BTREE;

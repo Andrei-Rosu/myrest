@@ -32,10 +32,15 @@ class User extends DATA_Model {
 
 	public function checkUser($username, $password) {
 		if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
-			return $this->getRow(array('login' => $username, 'password' => $password));
+			$user = $this->getRow(array('login' => $username));
 		} else {
-			return $this->getRow(array('email' => $username, 'password' => $password));
+			$user = $this->getRow(array('email' => $username));
 		}
+		if(!$user) return false;
+		if( password_verify($password, $user->password)) {
+			return $user;
+		}
+		return false;
 	}
 
 	public function can($action, $type = '*', $value = '*') {
@@ -67,11 +72,13 @@ class User extends DATA_Model {
 			}
 			return $this->rights;
 		}
+		
 		return $this->right->getUserRights($userId);
 	}
 	
 	public function is($role, $userId = null) {
 		$groups = $this->getGroups($userId);
+		if(!$groups) return false;
 		return in_array($role,  array_map(function($r){return $r->name;}, $groups));
 	}
 	
@@ -108,11 +115,13 @@ class User extends DATA_Model {
 	}
 
 	public function notExistingLogin($login) {
-		return !$this->getRow(array('login' => $login));
+		$this->load->model('memberspace/user');
+		return !$this->user->getRow(array('login' => $login));
 	}
 
 	public function notExistingEmail($email) {
-		return !$this->getRow(array('email' => $email));
+		$this->load->model('memberspace/user');
+		return !$this->user->getRow(array('email' => $email));
 	}
 
 	public function addToGroup($groupId, $userId = null) {
@@ -142,6 +151,18 @@ class User extends DATA_Model {
 		$CI->load->library('session');
 		$CI->session->set_userdata('user_id', $id);
 	}
+	
+	protected function beforeInsert(&$to_insert = null) {
+		parent::beforeInsert($to_insert);
+		$to_insert['password'] = password_hash($to_insert['password'], PASSWORD_DEFAULT);
+	}
+	
+	protected function beforeUpdate(&$datas = null, $where = null) {
+		parent::beforeUpdate($datas, $where);
+		if(isset($datas['password']) && $datas['password']) {
+			$datas['password'] = password_hash($datas['password'], PASSWORD_DEFAULT);
+		}
+	}
 
 	public function validationRulesForInsert($datas) {
 		return array(
@@ -169,12 +190,12 @@ class User extends DATA_Model {
 			array(
 				'field' => 'password',
 				'label' => translate('Mot de passe'),
-				'rules' => 'required|trim|min_length[5]|max_length[50]|md5'
+				'rules' => 'required|trim|min_length[5]|max_length[50]'
 			),
 			array(
 				'field' => 'passwordconfirm',
 				'label' => translate('Mot de passe de confirmation'),
-				'rules' => 'required|trim|min_length[5]|max_length[50]|md5|matches[password]'
+				'rules' => 'required|trim|min_length[5]|max_length[50]|matches[password]'
 			)
 		);
 	}
@@ -231,26 +252,34 @@ class User extends DATA_Model {
 			array(
 				'field' => 'password',
 				'label' => translate('Mot de passe'),
-				'rules' => 'trim|min_length[5]|max_length[50]|md5'
+				'rules' => array(
+					'trim',
+					'min_length[5]',
+					'max_length[50]',
+					array('valid_password', function($r) use($datas) {
+						return !empty($datas['oldpassword']);
+					}),
+					'matches[passwordconfirm]'
+				)
 			),
 			array(
 				'field' => 'passwordconfirm',
 				'label' => translate('Mot de passe de confirmation'),
-				'rules' => 'trim|min_length[5]|max_length[50]|md5|matches[password]'
+				'rules' => 'trim'
 			),
 			array(
 				'field' => 'oldpassword',
 				'label' => translate('Ancien mot de passe'),
 				'rules' => array(
 					'trim',
-					'md5',
 					array('valid_old_password', function($r) use($old,$datas) {
 						if(!isset($datas['password'])||!$datas['password']) return true;
-						return $old->password == $r;
+						return password_verify($r, $old->password);
 					})
 				)
 			)
 		);
 	}
+	
 
 }
