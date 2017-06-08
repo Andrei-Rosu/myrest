@@ -69,7 +69,7 @@ $db['default']['stricton'] = FALSE;
 
 $db['recette']['hostname'] = 'localhost';
 $db['recette']['username'] = 'myrest';
-$db['recette']['password'] = '5b2z6tFt69ZAjef8';
+$db['recette']['password'] = 'VTVKWmJ4cdE2rz4x';
 $db['recette']['database'] = 'myrest';
 $db['recette']['dbdriver'] = 'mysqli';
 $db['recette']['dbprefix'] = '';
