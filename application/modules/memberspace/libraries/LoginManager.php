@@ -59,6 +59,8 @@ class LoginManager {
 		if(!$user_id){
 			$user_id = get_cookie('user_id');
 		}
+//		var_dump($user_id);
+//		die();
 		if($user_id) {
 			$this->_user->connect($user_id);
 		}
