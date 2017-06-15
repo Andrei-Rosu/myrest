@@ -5,7 +5,7 @@
     },
     "tasks": {
         "browserSync": {
-            "proxy": "localhost\/myrest"
+            "proxy": "localhost\/site-core-test"
         },
         "static": {
             "src": "static",

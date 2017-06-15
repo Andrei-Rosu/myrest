@@ -88,7 +88,7 @@ $db['recette']['stricton'] = FALSE;
 
 $db['thibault']['hostname'] = 'localhost';
 $db['thibault']['username'] = 'myrest';
-$db['thibault']['password'] = 'myrest';
+$db['thibault']['password'] = 'dj5W85rF8FZVqX2S';
 $db['thibault']['database'] = 'myrest';
 $db['thibault']['dbdriver'] =  'mysqli';
 $db['thibault']['dbprefix'] =  '';
